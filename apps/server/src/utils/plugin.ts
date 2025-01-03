@@ -3,6 +3,9 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import { PluginSchema, PluginType } from '@resourvereign/common/models/plugin.js';
+import { Promisable } from 'type-fest';
+
+import { IntentDocument } from '../models/intent.js';
 
 import { Logger } from './logger.js';
 
@@ -41,13 +44,21 @@ export type NotificationsPlugin<Config extends DefaultPluginConfig = DefaultPlug
     }>;
   };
 
+export type ScheduleMiddlewareContext = {
+  intent: IntentDocument;
+  date?: Date;
+};
+
 export type SchedulingPlugin<Config extends DefaultPluginConfig = DefaultPluginConfig> =
   BasePlugin & {
     initialize: (
       config: Config,
       logger: Logger,
     ) => Promise<{
-      sendMessage(msg: string): Promise<boolean>;
+      scheduleMiddleware(
+        context: ScheduleMiddlewareContext,
+        next: () => Promisable<void>,
+      ): Promisable<void>;
     }>;
   };
 

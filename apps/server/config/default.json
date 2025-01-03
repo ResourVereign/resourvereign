@@ -17,9 +17,6 @@
       "expiration": "7d"
     }
   },
-  "scheduler": {
-    "cron": "*/10 * * * *"
-  },
   "paginationLimits": {
     "logs": 10
   }

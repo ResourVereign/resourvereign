@@ -33,6 +33,7 @@
     "mongoose": "^8.0.1",
     "node-schedule": "^2.1.1",
     "ts-node": "^10.9.1",
+    "type-fest": "^4.8.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

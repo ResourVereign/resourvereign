@@ -12,11 +12,11 @@ const log = (user: string, level: LogLevel, message: string) => {
 
 export type Logger = ReturnType<typeof loggerForUser>;
 
-export const loggerForUser = (user: string) => {
+export const loggerForUser = (user: string, prefix: string) => {
   return {
-    debug: (message: string) => log(user, LogLevel.DEBUG, message),
-    info: (message: string) => log(user, LogLevel.INFO, message),
-    warn: (message: string) => log(user, LogLevel.WARN, message),
-    error: (message: string) => log(user, LogLevel.ERROR, message),
+    debug: (message: string) => log(user, LogLevel.DEBUG, `[${prefix}]:: ${message}`),
+    info: (message: string) => log(user, LogLevel.INFO, `[${prefix}]:: ${message}`),
+    warn: (message: string) => log(user, LogLevel.WARN, `[${prefix}]:: ${message}`),
+    error: (message: string) => log(user, LogLevel.ERROR, `[${prefix}]:: ${message}`),
   };
 };
